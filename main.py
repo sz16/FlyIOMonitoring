@@ -5,6 +5,10 @@ from datetime import date, datetime
 from time import sleep
 import random
 
+@app.route('/')
+def index():
+    return "Alive"
+
 def randomData():
     char = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
     return ''.join(random.choice(char) for i in range(36))
