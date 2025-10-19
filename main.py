@@ -7,6 +7,9 @@ from time import sleep
 from flask import Flask
 import threading
 
+import logging
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
+
 isLive = True
 app = Flask(__name__)
 
@@ -28,13 +31,13 @@ def getData():
     global isLive
     try:
         response = requests.get(url + '/data', timeout=10)
-        if response.status_code == 200:
+        if response.status_code == 200 and len(response.text) > 100:
             isLive = True
-            print('PingAlive')
+            logging.info('Ping Server Alive')
             return response.json()
         else:
             isLive = False
-            print("Không kết nối được (status:", response.status_code, ")")
+            logging.info('Dead')
             return ''
     except Exception as e:
         isLive = False
