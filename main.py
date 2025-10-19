@@ -4,7 +4,9 @@ import os
 from datetime import date, datetime
 from time import sleep
 import random
+from flask import Flask
 
+app = Flask(__name__)
 @app.route('/')
 def index():
     return "Alive"
