@@ -42,6 +42,7 @@ def getData():
     except Exception as e:
         isLive = False
         print("Không kết nối được:", e)
+        logging.info('VERY DEAD')
         return ''
 
 folder = r'D:\Games\Backup'  # File name is YYYY-MM-DD.json
