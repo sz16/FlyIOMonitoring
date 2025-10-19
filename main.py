@@ -20,7 +20,7 @@ def getData():
     try:
         response = requests.get(url+'/data', timeout=10)
         if response.status_code == 200:
-            print(pingComplete)
+            print('PingAlive')
             return json.loads(response.text)
         else:
             print("Không kết nối được")
