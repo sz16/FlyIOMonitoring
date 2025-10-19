@@ -81,6 +81,7 @@ def specialPing():
 
 def loop_task():
     while True:
+        logging.info('Start Checking')
         backup()
         sleep(30)
         specialPing()
@@ -88,9 +89,11 @@ def loop_task():
 
 def main():
     # Chạy Flask trên thread riêng
+    logging.info('Start Thread')
     threading.Thread(target=lambda: app.run(host='0.0.0.0', port=8080, debug=False), daemon=True).start()
 
     # Chạy vòng lặp chính
+    logging.info('Start task')
     loop_task()
 
 if __name__ == "__main__":
