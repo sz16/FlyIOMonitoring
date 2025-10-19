@@ -29,7 +29,9 @@ def randomData():
 url = "https://discordmanager.fly.dev"
 
 def getData():
+    logging.info('Start Getting Data')
     global isLive
+    logging.info(str(isLive))
     try:
         response = requests.get(url + '/data', timeout=10)
         if response.status_code == 200 and len(response.text) > 100:
