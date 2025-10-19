@@ -81,7 +81,7 @@ def specialPing():
     except Exception as e:
         print("SpecialPing lỗi:", e)
 
-def loop_task():
+async def loop_task():
     while True:
         logging.info('Start Checking')
         backup()
@@ -90,13 +90,14 @@ def loop_task():
         await asyncio.sleep(random.randint(45, 65))
 
 def main():
-    # Chạy Flask trên thread riêng
     logging.info('Start Thread')
-    threading.Thread(target=lambda: app.run(host='0.0.0.0', port=8080, debug=False), daemon=True).start()
+    threading.Thread(
+        target=lambda: app.run(host='0.0.0.0', port=8080, debug=False),
+        daemon=True
+    ).start()
 
-    # Chạy vòng lặp chính
     logging.info('Start task')
-    loop_task()
+    asyncio.run(loop_task())  # Chạy async event loop
 
 if __name__ == "__main__":
     main()
