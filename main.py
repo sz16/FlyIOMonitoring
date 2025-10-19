@@ -60,6 +60,7 @@ def specialPing():
     requests.post(url+"/special", json={})
 
 def main():
+    app.run(host='0.0.0.0', port=8080) 
     while True:
         backup()
         sleep(30)
