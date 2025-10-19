@@ -34,16 +34,16 @@ def getData():
         response = requests.get(url + '/data', timeout=10)
         if response.status_code == 200 and len(response.text) > 100:
             isLive = True
-            logging.info('Ping Server Alive')
+            logging.error('Ping Server Alive')
             return response.json()
         else:
             isLive = False
-            logging.info('Dead')
+            logging.error('Dead')
             return ''
     except Exception as e:
         isLive = False
         print("Không kết nối được:", e)
-        logging.info('VERY DEAD')
+        logging.error('VERY DEAD')
         return ''
 
 folder = r'D:\Games\Backup'  # File name is YYYY-MM-DD.json
