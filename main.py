@@ -6,6 +6,7 @@ from datetime import date
 from time import sleep
 from flask import Flask
 import threading
+import asyncio
 
 import logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
@@ -84,9 +85,9 @@ def loop_task():
     while True:
         logging.info('Start Checking')
         backup()
-        sleep(30)
+        await asyncio.sleep(30)
         specialPing()
-        sleep(random.randint(45, 65))
+        await asyncio.sleep(random.randint(45, 65))
 
 def main():
     # Chạy Flask trên thread riêng
