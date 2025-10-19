@@ -20,7 +20,7 @@ def getData():
     try:
         response = requests.get(url+'/data', timeout=10)
         if response.status_code == 200:
-            print(response.text)
+            print(pingComplete)
             return json.loads(response.text)
         else:
             print("Không kết nối được")
@@ -60,9 +60,10 @@ def specialPing():
     requests.post(url+"/special", json={})
 
 def main():
-    backup()
-    for i in range(3):
+    while True:
+        backup()
+        sleep(30)
         specialPing()
-        sleep(60)
+        sleep(random.randint(45, 65))
     
 if __name__ == "__main__": main()
