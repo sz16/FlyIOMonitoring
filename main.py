@@ -28,17 +28,18 @@ def get_status():
     global isLive, url
     flyLink = url
     html = f"""
-    <html>
-        <head><title>Status Page</title></head>
-        <body>
-            <p>isLive: {isLive}</p>
-            <p>Fly link: <a href="{flyLink}" target="_blank">{flyLink}</a></p>
-            <p>Data: <a href="{flyLink}" target="_blank">{flyLink+'/data'}</a></p>
-            <p>Logs: <a href="{flyLink}" target="_blank">{flyLink+'/logs'}</a></p>
-        </body>
-    </html>
-    """ #"""
-    return render_template_string
+<html>
+    <head><title>Status Page</title></head>
+    <body>
+        <p>isLive: {isLive}</p>
+        <p>Fly link: <a href="{flyLink}" target="_blank">{flyLink}</a></p>
+        <p>Data: <a href="{flyLink+'/data'}" target="_blank">{flyLink+'/data'}</a></p>
+        <p>Logs: <a href="{flyLink+'/log'}" target="_blank">{flyLink+'/log'}</a></p>
+        <p>Debug: <a href="{flyLink+'/debug'}" target="_blank">{flyLink+'/debug'}</a></p>
+    </body>
+</html>
+""" #""""
+    return render_template_string(html)
 
 def randomData():
     char = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
