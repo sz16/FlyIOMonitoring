@@ -4,7 +4,7 @@ import os
 import random
 from datetime import date
 from time import sleep
-from flask import Flask
+from flask import Flask, render_template_string
 import threading
 import asyncio
 
@@ -12,6 +12,7 @@ import logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
 
 isLive = True
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -21,6 +22,22 @@ def index():
         return "Alive"
     else:
         return "Dead", 500
+
+@app.route('/status')
+def get_status():
+    global isLive, url
+    html = f"""
+    <html>
+        <head><title>Status Page</title></head>
+        <body>
+            <p>isLive: {isLive}</p>
+            <p>Fly link: <a href="{flyLink}" target="_blank">{flyLink}</a></p>
+            <p>Data: <a href="{flyLink}" target="_blank">{flyLink+'/data'}</a></p>
+            <p>Logs: <a href="{flyLink}" target="_blank">{flyLink+'/logs'}</a></p>
+        </body>
+    </html>
+    """ #"""
+    return render_template_string
 
 def randomData():
     char = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
