@@ -26,6 +26,7 @@ def index():
 @app.route('/status')
 def get_status():
     global isLive, url
+    flyLink = url
     html = f"""
     <html>
         <head><title>Status Page</title></head>
